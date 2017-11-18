@@ -4,12 +4,15 @@ import { View, Text, TouchableOpacity, FlatList } from 'react-native';
 import { fetchDecksFromAPI } from '../actions';
 import myStyles from '../utils/styles';
 import { clearAllRecordsFromStorage } from '../utils/api';
+import DeckItem from './DeckItem';
 
-function DeckItem({ navigation, deck }) {
+/*
+function DeckItem({ navigation, deck, popMenu }) {
   return (
     <View style={{ flex: 1 }}>
       <TouchableOpacity
         onPress={() => navigation.navigate('DeckDetail', { currentDeck: deck })}
+        onLongPress={() => popMenu()}
       >
         <View style={myStyles.deckItem}>
           <Text style={myStyles.deckTitle}>{deck.title}</Text>
@@ -25,16 +28,19 @@ function DeckItem({ navigation, deck }) {
     </View>
   );
 }
-
+*/
 class DeckList extends Component {
   componentDidMount() {
     this.props.fetchDecks();
   }
+
   renderItem = ({ item }) => {
     return <DeckItem navigation={this.props.navigation} deck={item} />;
   };
+
   render() {
     const { decks } = this.props;
+    let pview = 0;
 
     return (
       <View style={myStyles.container}>

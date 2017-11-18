@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
+import { FontAwesome } from '@expo/vector-icons';
 import myStyles from '../utils/styles';
+import ToolbarDropdown from './ToolbarDropdown';
 
 class DeckDetail extends Component {
   static navigationOptions = ({ navigation }) => {
@@ -8,7 +10,22 @@ class DeckDetail extends Component {
 
     return {
       title: `${title}`,
+      headerRight: (
+        <ToolbarDropdown
+          labels={['Hello', 'Goodbye']}
+          onPress={this.onPopupEvent}
+        />
+      ),
     };
+  };
+
+  onPopupEvent = (eventName, index) => {
+    if (eventName !== 'itemSelected') return;
+    /*
+    if (index === 0) this.onEdit();
+    else this.onRemove();
+    */
+    console.log(`onPopupEvent#  ${result} : ${index}`);
   };
 
   render() {
@@ -39,7 +56,9 @@ class DeckDetail extends Component {
                 currentDeck,
               })}
           >
-            <Text style={myStyles.btnText}>Start Quiz</Text>
+            <Text style={myStyles.btnText}>
+              <FontAwesome name="puzzle-piece" size={20} /> Start Quiz
+            </Text>
           </TouchableOpacity>
 
           <TouchableOpacity
@@ -49,7 +68,9 @@ class DeckDetail extends Component {
                 currentDeck,
               })}
           >
-            <Text style={myStyles.btnText}>Back to Deck List</Text>
+            <Text style={myStyles.btnText}>
+              <FontAwesome name="home" size={20} /> Home
+            </Text>
           </TouchableOpacity>
         </View>
       </View>
