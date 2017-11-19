@@ -1,4 +1,4 @@
-import { AsyncStorage } from 'react-native';
+import { AsyncStorage, UIManager, findNodeHandle, Alert } from 'react-native';
 import { Notifications, Permissions } from 'expo';
 import { NOTIFICATION_KEY } from '../constants/';
 
@@ -53,4 +53,46 @@ export function setLocalNotification() {
         });
       }
     });
+}
+
+export function deckPopUpMenu(ref, deck) {
+  UIManager.showPopupMenu(
+    findNodeHandle(ref),
+    ['Manage Cards', 'Edit Deck', 'Delete Deck'], // Menu list
+    () => console.log('something went wrong with the popup menu'),
+    (e, i) => {
+      // console.log(`${e} : ${i}`);
+      switch (i) {
+        case 0:
+          // TODO: manage cards
+          console.log(`MANAGE CARDS# ${e} : ${i}`);
+          break;
+        case 1:
+        default:
+          // TODO: redirect to edit deck or new deck with edit parameter?
+          console.log(`EDIT# ${e} : ${i} | ${JSON.stringify(deck, null, 2)}`);
+          break;
+
+        case 2:
+          console.log(`DELETE# ${e} : ${i}`);
+          Alert.alert(
+            'Delete Deck',
+            'Do you really want to delete this deck?',
+            [
+              {
+                text: 'No',
+              },
+              {
+                text: 'Delete',
+                onPress: () => {
+                  // TODO: delete deck operation here
+                  console.log('Delete Pressed!');
+                },
+              },
+            ]
+          );
+          break;
+      }
+    }
+  );
 }

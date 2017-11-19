@@ -2,30 +2,17 @@ import React, { Component } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 import myStyles from '../utils/styles';
-import ToolbarDropdown from './ToolbarDropdown';
+import SimpleDrop from './SimpleDrop';
+import { deckPopUpMenu } from '../utils/helpers';
 
 class DeckDetail extends Component {
   static navigationOptions = ({ navigation }) => {
-    const { title } = navigation.state.params.currentDeck;
+    const { currentDeck } = navigation.state.params;
 
     return {
-      title: `${title}`,
-      headerRight: (
-        <ToolbarDropdown
-          labels={['Hello', 'Goodbye']}
-          onPress={this.onPopupEvent}
-        />
-      ),
+      title: `${currentDeck.title}`,
+      headerRight: <SimpleDrop popMenu={deckPopUpMenu} item={currentDeck} />,
     };
-  };
-
-  onPopupEvent = (eventName, index) => {
-    if (eventName !== 'itemSelected') return;
-    /*
-    if (index === 0) this.onEdit();
-    else this.onRemove();
-    */
-    console.log(`onPopupEvent#  ${result} : ${index}`);
   };
 
   render() {

@@ -6,29 +6,6 @@ import myStyles from '../utils/styles';
 import { clearAllRecordsFromStorage } from '../utils/api';
 import DeckItem from './DeckItem';
 
-/*
-function DeckItem({ navigation, deck, popMenu }) {
-  return (
-    <View style={{ flex: 1 }}>
-      <TouchableOpacity
-        onPress={() => navigation.navigate('DeckDetail', { currentDeck: deck })}
-        onLongPress={() => popMenu()}
-      >
-        <View style={myStyles.deckItem}>
-          <Text style={myStyles.deckTitle}>{deck.title}</Text>
-          <Text>
-            {typeof deck.questions !== 'undefined'
-              ? deck.questions.length
-              : '0'}{' '}
-            cards
-          </Text>
-        </View>
-        <View style={myStyles.deckLine} />
-      </TouchableOpacity>
-    </View>
-  );
-}
-*/
 class DeckList extends Component {
   componentDidMount() {
     this.props.fetchDecks();
