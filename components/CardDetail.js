@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 import myStyles from '../utils/styles';
-import SimpleDrop from './SimpleDrop';
-import { deckPopUpMenu } from '../utils/helpers';
 
 class CardDetail extends Component {
   static navigationOptions = ({ navigation }) => {

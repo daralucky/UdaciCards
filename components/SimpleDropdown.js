@@ -3,7 +3,7 @@ import { View, StyleSheet } from 'react-native';
 // import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import { MaterialIcons } from '@expo/vector-icons';
 
-export default class SimpleDrop extends Component {
+export default class SimpleDropdown extends Component {
   render() {
     const { popMenu, item, navigation } = this.props;
 

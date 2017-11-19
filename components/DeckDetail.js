@@ -6,7 +6,7 @@ import {
   MaterialCommunityIcons,
 } from '@expo/vector-icons';
 import myStyles from '../utils/styles';
-import SimpleDrop from './SimpleDrop';
+import SimpleDropdown from './SimpleDropdown';
 import { deckPopUpMenu } from '../utils/helpers';
 
 class DeckDetail extends Component {
@@ -16,7 +16,7 @@ class DeckDetail extends Component {
     return {
       title: `${currentDeck.title}`,
       headerRight: (
-        <SimpleDrop
+        <SimpleDropdown
           popMenu={deckPopUpMenu}
           item={currentDeck}
           navigation={navigation}

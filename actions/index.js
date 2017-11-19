@@ -4,6 +4,7 @@ import { epochToString } from '../utils/helpers';
 
 export const addNewCard = (key, question, answer) => {
   const newCard = {
+    id: epochToString(),
     question,
     answer,
   };
