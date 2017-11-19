@@ -1,12 +1,5 @@
 import React, { Component } from 'react';
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  UIManager,
-  findNodeHandle,
-  Alert,
-} from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 import myStyles from '../utils/styles';
 import { deckPopUpMenu } from '../utils/helpers';
 
@@ -20,7 +13,7 @@ class DeckItem extends Component {
           ref={c => (this.popMenu = c)}
           onPress={() =>
             navigation.navigate('DeckDetail', { currentDeck: deck })}
-          onLongPress={() => deckPopUpMenu(this.popMenu, deck)}
+          onLongPress={() => deckPopUpMenu(this.popMenu, deck, navigation)}
         >
           <View style={myStyles.deckItem}>
             <Text style={myStyles.deckTitle}>{deck.title}</Text>

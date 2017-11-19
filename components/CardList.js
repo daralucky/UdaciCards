@@ -3,34 +3,35 @@ import { connect } from 'react-redux';
 import { View, Text, TouchableOpacity, FlatList } from 'react-native';
 import { fetchDecksFromAPI } from '../actions';
 import myStyles from '../utils/styles';
-import { clearAllRecordsFromStorage } from '../utils/api';
-import DeckItem from './DeckItem';
+import CardItem from './CardItem';
 
-class DeckList extends Component {
+class CardList extends Component {
+  static navigationOptions = ({ navigation }) => {
+    const { deck } = navigation.state.params;
+
+    return {
+      title: `Cards in [${deck.title}]`,
+    };
+  };
+
   componentDidMount() {
     this.props.fetchDecks();
   }
 
   renderItem = ({ item }) => {
-    return <DeckItem navigation={this.props.navigation} deck={item} />;
+    return <CardItem navigation={this.props.navigation} card={item} />;
   };
 
   render() {
-    const { decks } = this.props;
-
+    const { questions } = this.props.navigation.state.params.deck;
+    console.log(JSON.stringify(questions, null, 2));
     return (
       <View style={myStyles.container}>
         <FlatList
-          data={decks}
+          data={questions}
           renderItem={this.renderItem}
           keyExtractor={(decks, title) => title}
         />
-        <TouchableOpacity
-          style={myStyles.btnDanger}
-          onPress={() => clearAllRecordsFromStorage()}
-        >
-          <Text style={myStyles.btnText}>Delete All Data</Text>
-        </TouchableOpacity>
       </View>
     );
   }
@@ -52,4 +53,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(DeckList);
+export default connect(mapStateToProps, mapDispatchToProps)(CardList);

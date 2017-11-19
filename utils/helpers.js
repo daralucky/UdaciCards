@@ -55,7 +55,7 @@ export function setLocalNotification() {
     });
 }
 
-export function deckPopUpMenu(ref, deck) {
+export function deckPopUpMenu(ref, deck, navigation) {
   UIManager.showPopupMenu(
     findNodeHandle(ref),
     ['Manage Cards', 'Edit Deck', 'Delete Deck'], // Menu list
@@ -64,8 +64,10 @@ export function deckPopUpMenu(ref, deck) {
       // console.log(`${e} : ${i}`);
       switch (i) {
         case 0:
-          // TODO: manage cards
-          console.log(`MANAGE CARDS# ${e} : ${i}`);
+          // console.log(`MANAGE CARDS# ${e} : ${i}`);
+          navigation.navigate('CardList', {
+            deck,
+          });
           break;
         case 1:
         default:
@@ -83,7 +85,45 @@ export function deckPopUpMenu(ref, deck) {
                 text: 'No',
               },
               {
-                text: 'Delete',
+                text: 'Delete Deck',
+                onPress: () => {
+                  // TODO: delete deck operation here
+                  console.log('Delete Pressed!');
+                },
+              },
+            ]
+          );
+          break;
+      }
+    }
+  );
+}
+
+export function cardPopUpMenu(ref, deck) {
+  UIManager.showPopupMenu(
+    findNodeHandle(ref),
+    ['Edit', 'Delete'], // Menu list
+    () => console.log('something went wrong with the popup menu'),
+    (e, i) => {
+      // console.log(`${e} : ${i}`);
+      switch (i) {
+        case 0:
+        default:
+          // TODO: redirect to edit deck or new deck with edit parameter?
+          console.log(`EDIT# ${e} : ${i} | ${JSON.stringify(deck, null, 2)}`);
+          break;
+
+        case 1:
+          console.log(`DELETE# ${e} : ${i}`);
+          Alert.alert(
+            'Delete Card',
+            'Do you really want to delete this Card?',
+            [
+              {
+                text: 'No',
+              },
+              {
+                text: 'Delete Card',
                 onPress: () => {
                   // TODO: delete deck operation here
                   console.log('Delete Pressed!');

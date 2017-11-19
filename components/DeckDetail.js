@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
-import { FontAwesome } from '@expo/vector-icons';
+import {
+  FontAwesome,
+  Ionicons,
+  MaterialCommunityIcons,
+} from '@expo/vector-icons';
 import myStyles from '../utils/styles';
 import SimpleDrop from './SimpleDrop';
 import { deckPopUpMenu } from '../utils/helpers';
@@ -11,7 +15,13 @@ class DeckDetail extends Component {
 
     return {
       title: `${currentDeck.title}`,
-      headerRight: <SimpleDrop popMenu={deckPopUpMenu} item={currentDeck} />,
+      headerRight: (
+        <SimpleDrop
+          popMenu={deckPopUpMenu}
+          item={currentDeck}
+          navigation={navigation}
+        />
+      ),
     };
   };
 
@@ -33,7 +43,9 @@ class DeckDetail extends Component {
                 currentDeck,
               })}
           >
-            <Text style={myStyles.btnText}> Add Card</Text>
+            <Text style={myStyles.btnText}>
+              <Ionicons name="md-add" size={20} /> Add Card
+            </Text>
           </TouchableOpacity>
 
           <TouchableOpacity
@@ -45,6 +57,18 @@ class DeckDetail extends Component {
           >
             <Text style={myStyles.btnText}>
               <FontAwesome name="puzzle-piece" size={20} /> Start Quiz
+            </Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={myStyles.btnInfo}
+            onPress={() =>
+              this.props.navigation.navigate('CardList', {
+                deck: currentDeck,
+              })}
+          >
+            <Text style={myStyles.btnText}>
+              <MaterialCommunityIcons name="cards" size={20} /> Manage Cards
             </Text>
           </TouchableOpacity>
 

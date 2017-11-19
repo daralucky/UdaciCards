@@ -106,4 +106,25 @@ export default (Styles = StyleSheet.create({
     borderBottomColor: Color.orange,
     width: 350,
   },
+  cardTitle: {
+    color: Color.red,
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+  cardItem: {
+    flex: 1,
+    marginLeft: 0,
+    marginRight: 0,
+    marginTop: 10,
+    marginBottom: 0,
+    alignItems: 'flex-start',
+    justifyContent: 'center',
+  },
+  cardLine: {
+    marginTop: 5,
+    marginBottom: 5,
+    borderBottomWidth: 1,
+    borderBottomColor: Color.purple,
+    width: 350,
+  },
 }));

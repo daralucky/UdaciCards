@@ -5,7 +5,7 @@ import { MaterialIcons } from '@expo/vector-icons';
 
 export default class SimpleDrop extends Component {
   render() {
-    const { popMenu, item } = this.props;
+    const { popMenu, item, navigation } = this.props;
 
     return (
       <View style={{ flexDirection: 'row' }}>
@@ -20,7 +20,7 @@ export default class SimpleDrop extends Component {
           />
           <MaterialIcons
             name="more-vert"
-            onPress={() => popMenu(this.menuRef, item)}
+            onPress={() => popMenu(this.menuRef, item, navigation)}
             style={{ marginRight: 10, color: 'white' }}
             size={30}
           />

@@ -9,6 +9,8 @@ import DeckList from './components/DeckList';
 import DeckNew from './components/DeckNew';
 import DeckDetail from './components/DeckDetail';
 import CardNew from './components/CardNew';
+import CardList from './components/CardList';
+import CardDetail from './components/CardDetail';
 import Quiz from './components/Quiz';
 import QuizResult from './components/QuizResult';
 import { setLocalNotification } from './utils/helpers';
@@ -63,6 +65,24 @@ const MainNavigator = StackNavigator(
         headerTintColor: Color.white,
         headerStyle: {
           backgroundColor: Color.warningColor,
+        },
+      },
+    },
+    CardList: {
+      screen: CardList,
+      navigationOptions: {
+        headerTintColor: Color.white,
+        headerStyle: {
+          backgroundColor: Color.infoColor,
+        },
+      },
+    },
+    CardDetail: {
+      screen: CardDetail,
+      navigationOptions: {
+        headerTintColor: Color.white,
+        headerStyle: {
+          backgroundColor: Color.infoColor,
         },
       },
     },
